@@ -1,0 +1,111 @@
+###
+POST http://127.0.0.1:8000/register/
+Content-Type: application/json
+
+# {
+#     "username":"Luminar",
+#     "password":"luminar123",
+#     "email":"luminar@gmail.com"
+# }
+
+# {
+#     "username":"Anagha",
+#     "password":"anagha123",
+#     "email":"anagha@gmail.com"
+# }
+
+# {
+#     "username":"Anjana",
+#     "password":"anju12",
+#     "email":"anjana@gmail.com"
+# }
+
+{
+    "username":"Dev",
+    "password":"dev009",
+    "email":"dev01@gmail.com"
+}
+
+
+###
+GET http://127.0.0.1:8000/users/
+Accept:application/json
+
+
+# ###
+# POST http://127.0.0.1:8000/trips/
+# Content-Type: application/json
+
+# {
+#     "title":"Trip with friends..!",
+#     "start_date":"2023-10-10",
+#     "destination":"Paris"
+# }
+
+
+###
+GET http://127.0.0.1:8000/trips/
+Accept:application/json
+Authorization: Basic Dev:dev009
+
+
+
+###
+POST http://127.0.0.1:8000/trips/
+Content-Type: application/json
+Authorization: Basic Dev:dev009
+
+# {
+#     "title":"Trip with friends..!",
+#     "start_date":"2023-10-10",
+#     "destination":"Paris"
+# }
+
+# {
+#     "title":"Trip with friends..!",
+#     "start_date":"2023-10-12",
+#     "destination":"Munnar"
+# }
+
+{
+    "title":"Trip with family..!",
+    "start_date":"2023-10-12",
+    "destination":"Vagamon"
+}
+
+
+
+###
+GET http://127.0.0.1:8000/trips/1/
+Accept:application/json
+Authorization: Basic Anjana:anju12
+
+
+###
+PUT http://127.0.0.1:8000/trips/3/
+Content-Type: application/json
+Authorization: Basic Dev:dev009
+
+{
+    "title": "Trip with friends..!",
+    "start_date": "2023-11-16",
+    "destination": "Vagamon"
+}
+
+
+###
+DELETE  http://127.0.0.1:8000/trips/3/
+Authorization: Basic Dev:dev009
+
+
+
+###
+POST http://127.0.0.1:8000/trips/1/members/
+Content-Type: application/json
+Authorization: Basic Dev:dev009
+
+{
+    "username":"Amal"
+}
+
+

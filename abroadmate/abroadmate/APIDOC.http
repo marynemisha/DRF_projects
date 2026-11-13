@@ -1,0 +1,92 @@
+###
+POST http://127.0.0.1:8000/register/
+Content-Type:application/json
+
+# {
+#     "username":"Arun",
+#     "email":"arun@gmail.com",
+#     "password":"arun123"
+# }
+
+# {
+#     "username":"Anupama",
+#     "email":"anupama123@gmail.com",
+#     "password":"anu123"
+# }
+
+
+###
+GET http://127.0.0.1:8000/users/
+Accept:application/json
+
+
+###
+GET http://127.0.0.1:8000/countries/
+Accept: application/json
+
+
+###
+POST http://127.0.0.1:8000/countries/
+Content-Type: application/json
+
+# {
+#     "country_name": "Canada",
+#     "country_code": "+1"
+# }
+
+{
+    "country_name": "Germany",
+    "country_code": "+49"
+}
+
+
+###
+GET http://127.0.0.1:8000/countries/2/
+Accept: application/json
+
+###
+PUT http://127.0.0.1:8000/countries/1/
+Content-Type: application/json
+
+{
+    "country_name": "United States",
+    "country_code": "+1"
+}
+
+###
+DELETE http://127.0.0.1:8000/countries/1/
+
+
+
+###
+POST http://127.0.0.1:8000/applications/
+Content-Type: application/json
+Authorization: Basic Arun:arun123
+
+{
+    "country": 2,
+    "course_name": "MSc Computer Science"
+}
+
+###
+GET http://127.0.0.1:8000/applications/
+Authorization:Basic Arun:arun123
+
+
+###
+GET http://127.0.0.1:8000/applications/1/
+Authorization:Basic Arun:arun123
+
+
+###
+PUT http://127.0.0.1:8000/applications/1/
+Content-Type: application/json
+Authorization:Basic Arun:arun123
+
+{
+    "country": 2,
+    "course_name": "MSc Data Science"
+}
+
+###
+DELETE http://127.0.0.1:8000/applications/1/

@@ -1,0 +1,41 @@
+###
+GET http://127.0.0.1:8000/jobs/
+Accept: application/json
+
+###
+POST http://127.0.0.1:8000/jobs/    
+Content-Type: application/json
+
+{
+ "job_types": "Full Time",
+ "title": "Python Developer",
+ "company_name": "ABC Technologies", 
+ "jd": "Looking for a Python Django Developer", 
+ "location": "Kochi", 
+ "salary": 30000
+}
+
+
+
+
+
+
+
+
+###
+GET http://127.0.0.1:8000/applications/
+Accept: application/json
+
+###
+POST http://127.0.0.1:8000/applications/
+Content-Type: application/json 
+
+{ 
+ "job": 1, 
+ "status": "Pending", 
+ "applicant_name": "Anu", 
+ "email": "anu@gmail.com", 
+ "phone": "9876543210", 
+ "qualification": "BCA",
+"skills": "Python, Django, MySQL" 
+}

@@ -100,12 +100,24 @@ Authorization: Basic Dev:dev009
 
 
 ###
+GET http://127.0.0.1:8000/trips/1/members/
+Accept: application/json
+Authorization: Basic Dev:dev009
+
+
+###
 POST http://127.0.0.1:8000/trips/1/members/
 Content-Type: application/json
 Authorization: Basic Dev:dev009
 
+# {
+#     "username":"Anagha"
+# }
+
 {
-    "username":"Amal"
+    "username":"Anjana"
 }
 
-
+###
+DELETE http://127.0.0.1:8000/trips/1/members/1/
+Authorization: Basic Dev:dev009

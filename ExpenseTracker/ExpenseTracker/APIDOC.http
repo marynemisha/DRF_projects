@@ -1,0 +1,104 @@
+###
+POST http://127.0.0.1:8000/register/
+Content-type:application/json
+
+# {
+#     "username":"Dev",
+#     "password":"dev009",
+#     "email":"dev01@gmail.com"
+# }
+
+# {
+#     "username":"Nemisha",
+#     "password":"nemi123",
+#     "email":"nemisha@gmail.com"
+# }
+
+{
+    "username":"Anagha",
+    "password":"anagha123",
+    "email":"anu123@gmail.com"
+}
+
+
+###
+GET http://127.0.0.1:8000/user/
+Accept: application/json
+
+
+###
+GET http://127.0.0.1:8000/category/
+Accept:application/json
+Authorization: Basic Dev:dev009
+# Authorization:Basic Nemisha:nemi123
+# Authorization:Basic Anagha:anagha123
+
+# ###
+# Post http://127.0.0.1:8000/category/
+# Content-Type: application/json
+# Authorization: Basic Dev:dev009
+
+# # {
+# #   "name":"Meals",
+# #   "category_type":"Food"
+# # }
+
+# {
+#   "name":"Temple visit",
+#   "category_type":"Trip"
+# }
+
+
+# ###
+# Post http://127.0.0.1:8000/category/
+# Content-Type: application/json
+# Authorization:Basic Nemisha:nemi123
+
+# {
+#     "name": "Biryani",
+#     "category_type": "Food"
+# }
+
+# {
+#     "name": "Munnar",
+#     "category_type": "Trip"
+# }
+
+###
+Post http://127.0.0.1:8000/category/
+Content-Type: application/json
+Authorization:Basic Anagha:anagha123
+
+# {
+#     "name": "Frock",
+#     "category_type": "Dress"
+# }
+
+{
+    "name": "Biryani",
+    "category_type": "Food"
+}
+
+
+###
+GET http://127.0.0.1:8000/category/1/
+Accept: application/json
+Authorization: Basic Dev:dev009
+# Authorization:Basic Nemisha:nemi123
+# Authorization:Basic Anagha:anagha123
+
+
+###
+PUT http://127.0.0.1:8000/category/1/
+Content-Type: application/json
+Authorization: Basic Dev:dev009
+
+{
+  "name": "Saree",
+  "category_type": "Dress"
+}
+
+
+###
+DELETE http://127.0.0.1:8000/category/3/
+Authorization: Basic Dev:dev009

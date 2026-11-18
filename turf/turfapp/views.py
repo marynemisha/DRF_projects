@@ -63,8 +63,6 @@ class BookingListCreateView(APIView):
                 "booking_date"
             )
             duration = serializer_instance.validated_data.get("duration")
-           
-
             if not turf.is_available:
                 return Response(
                     data={"message": "Turf is not available..!"}
@@ -73,7 +71,6 @@ class BookingListCreateView(APIView):
                 turf_id=turf.id,
                 booking_date=booking_date
             ).order_by("-booking_time").first()
-
             if last_booking is None:
                 next_time = turf.opening_time
             else:
@@ -88,14 +85,10 @@ class BookingListCreateView(APIView):
                 return Response(
                     data={"message": "No slots available today..!"}
                 )
-
-            # Setting automatic booking time
             form_data["booking_time"] = next_time
-
-            # Calculating amount
             form_data["amount"] = turf.price_per_hour * duration
             form_data["turf"]=turf
-            qs = BookingDb.objects.create(**form_data)
+            # qs = BookingDb.objects.create(**form_data)
             return Response(data={
                     "Message": "Booked successfully..!",
                     "Turf Name": turf.turf_name,

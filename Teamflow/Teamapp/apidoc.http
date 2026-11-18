@@ -1,0 +1,139 @@
+# registration
+###
+POST http://127.0.0.1:8000/register/
+Content-Type: application/json
+
+# {
+#     "username":"Anu",
+#     "email":"anu@gmail.com",
+#     "password":"anu123"
+# }
+
+# {
+#     "username":"Dev",
+#     "email":"dev@gmail.com",
+#     "password":"dev123"
+# }
+
+# {
+#     "username":"Arun",
+#     "email":"arun@gmail.com",
+#     "password":"arun123"
+# }
+
+# {
+#     "username":"Ravi",
+#     "email":"ravi@gmail.com",
+#     "password":"ravi123"
+# }
+
+{
+    "username":"Sam",
+    "email":"sam@gmail.com",
+    "password":"sam123"
+}
+
+
+# view all users
+###
+GET http://127.0.0.1:8000/users/
+Accept: application/json
+
+#project details api calls
+
+###
+GET http://127.0.0.1:8000/project/
+Accept: application/json
+Authorization: Basic Anu:anu123
+
+# ###
+# POST http://127.0.0.1:8000/project/
+# Content-Type: application/json
+# Authorization: Basic Anu:anu123
+
+# # {
+# #   "title": "Hospital Management",
+# #   "description": "Hospital management system development",
+# #   "deadline": "2026-12-30"
+# # }
+
+# {
+#     "title": "E-Commerce Website",
+#     "description": "Online shopping platform development",
+#     "deadline": "2027-01-15"
+# }
+
+# {
+#     "title": "Online Banking System",
+#     "description": "Online banking application development",
+#     "deadline": "2027-03-15"
+# }
+
+###
+POST http://127.0.0.1:8000/project/
+Content-Type: application/json
+Authorization: Basic Dev:dev123
+
+# {
+#     "title": "E-Commerce Website",
+#     "description": "Online shopping platform development",
+#     "deadline": "2027-01-15"
+# }
+
+# {
+#     "title": "Food Delivery App",
+#     "description": "Online food ordering and delivery system",
+#     "deadline": "2027-02-10"
+# }
+
+{
+    "title": "Student Management System",
+    "description": "Manage student records and academic details",
+    "deadline": "2027-02-28"
+}
+
+
+###
+GET http://127.0.0.1:8000/project/1/
+Accept: application/json
+Authorization: Basic Anu:anu123
+
+###
+PUT http://127.0.0.1:8000/project/1/
+Content-Type: application/json
+Authorization: Basic Anu:anu123
+
+{
+  "title": "Hospital Management system",
+  "description": "Hospital web development",
+  "deadline": "2027-01-15"
+}
+
+###
+DELETE http://127.0.0.1:8000/project/5/
+Authorization: Basic Dev:dev123
+
+
+#members details api call
+
+###
+GET http://127.0.0.1:8000/project/1/members/
+Accept: application/json
+Authorization: Basic Anu:anu123
+
+###
+POST http://127.0.0.1:8000/project/1/members/
+Content-Type: application/json
+Authorization: Basic Anu:anu123
+
+# {
+# "username": "Dev"
+# }
+
+# {
+# "username": "Arun"
+# }
+
+###
+DELETE http://127.0.0.1:8000/project/1/members/2/
+Authorization:  Basic Anu:anu123

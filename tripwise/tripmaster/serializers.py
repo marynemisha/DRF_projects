@@ -27,10 +27,10 @@ class TripMemberSerializer(serializers.ModelSerializer):
         read_only_field=['id','joined_at']
 
 
-    def validate_data(self,value):
+    def validate_username(self,value):
         try:
             user=User.objects.get(username=value)
-        except user.DoesNotExist:
+        except User.DoesNotExist:
             raise serializers.ValidationError("This user is not registered..!")
         trip=self.context['trip']
         if user==trip.created_by:
@@ -44,3 +44,4 @@ class TripMemberSerializer(serializers.ModelSerializer):
         user=User.objects.get(username=username)
         trip=self.context['trip']
         return TripMemberDb.objects.create(trip=trip,user=user)
+

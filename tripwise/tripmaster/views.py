@@ -1,14 +1,13 @@
-from django.contrib.gis import serializers
 from django.shortcuts import render,get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from tripmaster import serializers
-from tripmaster.serializers import UserSerializer,TripSerializer
-from tripmaster.models import TripDb
+from tripmaster.serializers import UserSerializer,TripSerializer,TripMemberSerializer
+from tripmaster.models import TripDb,TripMemberDb
 from rest_framework import authentication, permissions  
 from tripmaster.permissions import OwnerOnly
-
+from rest_framework.exceptions import PermissionDenied
 # Create your views here.
 
 class SignUpView(APIView):
@@ -47,11 +46,11 @@ class TripListCeateView(APIView):
             })
         else:
             return Response(data=serializer_instance.errors)    
-            _
+            
 class TripRetrieveUpdateDeleteView(APIView): 
     authentication_classes=[authentication.BasicAuthentication]
-    # permission_classes=[permissions.IsAuthenticated]
-    permission_classes=[OwnerOnly]
+    permission_classes=[permissions.IsAuthenticated]
+    # permission_classes=[OwnerOnly]
 
     def get(self,request,pk):
         trip_object=get_object_or_404(TripDb,id=pk)
@@ -101,3 +100,46 @@ class TripRetrieveUpdateDeleteView(APIView):
             return Response(data={
                 "Message":"No Changes"
             })
+
+
+class TripMemberListCreateView(APIView):
+    authentication_classes=[authentication.BasicAuthentication]
+    permission_classes=[permissions.IsAuthenticated]
+    def get(self,request,trip_id):
+        #Get the trip
+        trip_object=get_object_or_404(TripDb,id=trip_id)
+        is_owner=trip_object.created_by==request.user
+        is_member=TripMemberDb.objects.filter(trip=trip_object,user=request.user).exists()
+        if not(is_owner or is_member):
+            raise PermissionDenied("You are not allowed to access this trip...!")
+        #get all trip members
+        members=TripMemberDb.objects.filter(trip=trip_object)
+        serializer_instance=TripMemberSerializer(members,many=True)
+        return Response(data=serializer_instance.data,status=200)
+
+    def post(self,request,trip_id):
+        trip_object=get_object_or_404(TripDb,id=trip_id)
+        if trip_object.created_by!=request.user:
+            raise PermissionDenied("Only trip owner can add members..!")
+        form_data=request.data
+        serializer_instance=TripMemberSerializer(data=form_data,context={'trip':trip_object})
+        if serializer_instance.is_valid():
+            serializer_instance.save()
+            return Response(data={
+                "Message":"Member added successfully..!"
+            })
+        else:
+            return Response(data=serializer_instance.errors,status=400)
+
+class TripMemberDeleteView(APIView):
+    authentication_classes=[authentication.BasicAuthentication]
+    permission_classes=[permissions.IsAuthenticated]
+    def delete(self,request,trip_id,member_id):
+        trip_object=get_object_or_404(TripDb,id=trip_id)
+        if trip_object.created_by!=request.user:
+            raise PermissionDenied("only trip owner can remove members...!")
+        members=get_object_or_404(TripMemberDb,id=member_id,trip=trip_object)
+        members.delete()
+        return Response({
+            "Message":"Deleted successfully...!"
+        })

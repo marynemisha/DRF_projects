@@ -1,0 +1,57 @@
+###
+POST http://127.0.0.1:8000/register/
+Content-Type: application/json
+
+# {
+#     "username":"Anu",
+#     "email":"anu@gmail.com",
+#     "password":"anu123"
+# }
+
+# {
+#     "username":"Ravi",
+#     "email":"ravi@gmail.com",
+#     "password":"ravi123"
+# }
+
+# {
+#     "username":"Anjana",
+#     "email":"anjana@gmail.com",
+#     "password":"anjana123"
+# }
+
+{
+    "username":"Nemisha",
+    "email":"nemisha@gmail.com",
+    "password":"nemisha123"
+}
+
+
+###
+GET http://127.0.0.1:8000/users/
+Accept: application/json
+
+
+###
+POST http://127.0.0.1:8000/login/
+Content-Type: application/json
+
+{
+    "username":"Anjana",
+    "password":"anjana123"
+}
+
+###
+GET  http://127.0.0.1:8000/notes/
+Accept: application/json
+Authorization: Token cd3559076bbd14e651189f3c6e8dc6d4695d9300
+
+###
+POST http://127.0.0.1:8000/notes/
+Content-Type: application/json
+Authorization: Token cd3559076bbd14e651189f3c6e8dc6d4695d9300
+
+{
+    "title":"Python Basics",
+    "description":"Python is an object oriented programming language..!"
+}

@@ -3,6 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from Repository.models import *
 from Repository.serializers import *
+from Repository.gemini_service import evaluate_answer
+import json
 # Create your views here.
 class QuestionsListViewCreate(APIView):
     def get(self,request):
@@ -41,7 +43,6 @@ class QuestionsRetrieveUpdateDelete(APIView):
             {"message":"Question Deleted successfully..!"}
         )
 
-
 class SubmissionListCreateView(APIView):
     def get(self,request):
         qs=SubmissionsDb.objects.all()
@@ -52,10 +53,47 @@ class SubmissionListCreateView(APIView):
         serializer_instance=SubmissionSerializer(data=form_data)
         if serializer_instance.is_valid(): 
             original=serializer_instance.validated_data
-            SubmissionsDb.objects.create(**original)
-            return Response(data=serializer_instance.data)
+
+            #step1- GET QUESTION FROM DATABASE(QuestionsDb)
+            question=QuestionsDb.objects.get(id=original['question_id'])
+
+            #step2-PREPARE QUESTION DETAILS
+            question_details=f"""
+            Title:{question.title}
+            Language:{question.language}
+            Difficulty:{question.difficulty_level}
+            Topic:{question.topic}
+            Description={question.notes}
+            Sample Input:{question.sample_input}
+            Sample Output:{question.sample_output}
+            """
+
+            #step3-GET STUDENT'S ANSWER
+            student_answer=original["answer"]
+
+            #step4-GET A STRUCTURED FEEDBACK FROM GEMINI
+            try:
+                feedback=evaluate_answer(question_details,student_answer)
+            except Exception as e:
+                return Response({
+                    "Message":"AI evaluation failed..!",
+                    "Details":str(e)
+                })
+
+            #step5-CONVERT DICTIONARY INTO JSON STRING
+            feedback_json=json.dumps(feedback)
+
+            #step6-SAVE SUBMISSION IN DATABASE
+            submission=SubmissionsDb.objects.create(**original,remarks=feedback_json)
+
+            #step7-RETURN THE STRUCTURED RESPONSE
+            return Response({
+                "Message":"Submitted successfully...!",
+                "Answer":submission.answer,
+                "AI_Feedback":feedback
+            })
         else:
-            return Response(data=serializer_instance.errors)
+            return Response(serializer_instance.errors)
 
 class submissionRetrieveUpdateDelete(APIView):
     def get(self,request,pk):

@@ -20,12 +20,17 @@ Content-Type: application/json
 #     "password":"anjana123"
 # }
 
-{
-    "username":"Nemisha",
-    "email":"nemisha@gmail.com",
-    "password":"nemisha123"
-}
+# {
+#     "username":"Nemisha",
+#     "email":"nemisha@gmail.com",
+#     "password":"nemisha123"
+# }
 
+{
+    "username":"Alan",
+    "email":"alan@gmail.com",
+    "password":"alan123"
+}
 
 ###
 GET http://127.0.0.1:8000/users/
@@ -36,22 +41,142 @@ Accept: application/json
 POST http://127.0.0.1:8000/login/
 Content-Type: application/json
 
+# {
+#     "username":"Anjana",
+#     "password":"anjana123"
+# }
+
+# {
+#     "username":"Anu",
+#     "password":"anu123"
+# }
+
 {
-    "username":"Anjana",
-    "password":"anjana123"
+    "username":"Alan",
+    "password":"alan123"
 }
+
+
 
 ###
 GET  http://127.0.0.1:8000/notes/
 Accept: application/json
-Authorization: Token cd3559076bbd14e651189f3c6e8dc6d4695d9300
+Authorization: Token 10dcd5e43b7ccca9bb43f81a63fd0ab491046516
+# Authorization: Token cd3559076bbd14e651189f3c6e8dc6d4695d9300
+
 
 ###
 POST http://127.0.0.1:8000/notes/
 Content-Type: application/json
-Authorization: Token cd3559076bbd14e651189f3c6e8dc6d4695d9300
+# Authorization: Token cd3559076bbd14e651189f3c6e8dc6d4695d9300
+Authorization: Token 10dcd5e43b7ccca9bb43f81a63fd0ab491046516
+
+
+# {
+#     "title":"Python Basics",
+#     "description":"Python is an object oriented programming language..!"
+# }
 
 {
-    "title":"Python Basics",
-    "description":"Python is an object oriented programming language..!"
+    "title":"Python Django",
+    "description":"Python is an object oriented programming language..!Django is a framework..!"
+}
+
+
+###
+GET http://127.0.0.1:8000/notes/2/ 
+Accept: application/json
+Authorization: Token 10dcd5e43b7ccca9bb43f81a63fd0ab491046516
+
+###
+DELETE http://127.0.0.1:8000/notes/3/
+Authorization: Token 10dcd5e43b7ccca9bb43f81a63fd0ab491046516
+
+
+###
+PUT http://127.0.0.1:8000/notes/2/
+Content-Type:  application/json
+Authorization: Token 10dcd5e43b7ccca9bb43f81a63fd0ab491046516
+
+{
+    "title" : "Introduction to DRF",
+    "description" : "DRF is a powerfull toolkit built on top of Django!"
+}
+
+
+###
+POST http://127.0.0.1:8000/jwt_login/
+Content-Type:  application/json
+
+{
+    "username":"Alan",
+    "password":"alan123"
+}
+
+###
+GET http://127.0.0.1:8000/tasks/
+Accept:application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTg2NDYwLCJpYXQiOjE3OTUxODYxNjAsImp0aSI6IjljODVhOGY2MjNjZjQ4MWM5YjYxZDIyZTc3ZDA2YWFhIiwidXNlcl9pZCI6IjUifQ.qfvsx0haZXsxy78hxTG2CZc6tRkas8LVgHsOoXpN71w
+
+
+###
+POST http://127.0.0.1:8000/tasks/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTg2NDYwLCJpYXQiOjE3OTUxODYxNjAsImp0aSI6IjljODVhOGY2MjNjZjQ4MWM5YjYxZDIyZTc3ZDA2YWFhIiwidXNlcl9pZCI6IjUifQ.qfvsx0haZXsxy78hxTG2CZc6tRkas8LVgHsOoXpN71w
+
+# {
+#     "title":"Python Programs",
+#     "description":"Different pattern programs in python",
+#     "due_date":"2026-12-14",
+#     "status":"Pending"
+# }
+
+{
+    "title":"Python Programs",
+    "description":"factorial programs in python using for loop",
+    "due_date":"2026-11-20",
+    "status":"Submitted"
+}
+
+
+###
+POST http://127.0.0.1:8000/refresh/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTg3MTc1LCJpYXQiOjE3OTUxODY4NzUsImp0aSI6IjU4OGE3ZTNjMWJmNDQ4MzA4ZmQ0NDY3YjQyNDQyODZiIiwidXNlcl9pZCI6IjUifQ.Xc6rD5GNjF8PA6nyjhzHOl4qhxkiLyIV88npvP0a16M
+
+{
+    "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5NTI3MzI3NSwiaWF0IjoxNzk1MTg2ODc1LCJqdGkiOiIyMDdjY2ZlMzNmYTI0NjNjOGM0NWFiNmM1OThiMzQ2OSIsInVzZXJfaWQiOiI1In0.AEdDp5j9xCi8j7-5xU8clSMF0QJ2iQ_F8JVCujrVbag"
+}
+
+###
+GET http://127.0.0.1:8000/tasks/4/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MjMyNTM5LCJpYXQiOjE3OTUyMzIyMzksImp0aSI6ImNiMWQ5MTkwMTQ4YzRkNDJhN2E2MjU3OWRhMmUwZDFkIiwidXNlcl9pZCI6IjUifQ.rxHG-oYxRoGJnUWm4OAKTCyrirAncJP3-Lh_-bL30kU
+
+###
+PUT http://127.0.0.1:8000/tasks/4/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MjMyNTM5LCJpYXQiOjE3OTUyMzIyMzksImp0aSI6ImNiMWQ5MTkwMTQ4YzRkNDJhN2E2MjU3OWRhMmUwZDFkIiwidXNlcl9pZCI6IjUifQ.rxHG-oYxRoGJnUWm4OAKTCyrirAncJP3-Lh_-bL30kU
+
+{
+    "title":"Python basics",
+    "description":"factorial programs in python using for loop",
+    "due_date":"2026-11-20",
+    "status":"Submitted"
+
+}
+
+
+
+###
+DELETE http://127.0.0.1:8000/tasks/4/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MjM0MDEyLCJpYXQiOjE3OTUyMzM3MTIsImp0aSI6ImQ2MjA1OWNhYTMyNzQyNDhiYmQ2YWNjZmNlYzJmYmIxIiwidXNlcl9pZCI6IjUifQ.rb1hVXq-tE7GzfuPj8jm3H6dWld1M_KgG6ZhvQsQn4o
+
+###
+POST http://127.0.0.1:8000/jwt_logout/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MjM0MzIxLCJpYXQiOjE3OTUyMzQwMjEsImp0aSI6IjhhNDRjM2U3ZTA2MjQ3OGJiMGUwYzEyYTgxOWNhZDNhIiwidXNlcl9pZCI6IjUifQ.RkIbzb5bj7qu9BZGCkwSvTlgC9MVibtNSXOfwkpmQ1o
+
+{
+ "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5NTMyMDQyMSwiaWF0IjoxNzk1MjM0MDIxLCJqdGkiOiJkNDg2NjRhNzhlZmM0MzE3ODc2NDdiZDZmNWI1ZmNkYSIsInVzZXJfaWQiOiI1In0.sfDXmIrrVCBA_CrxG_7zhsqOUvRkuaZf7KM_06tIATk"
 }

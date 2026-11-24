@@ -20,3 +20,9 @@ class NoteSerializer(serializers.ModelSerializer):
         model=NotesDb
         fields="__all__"
         read_only_fields=["id","user","created_date"]
+
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=TaskDb
+        fields="__all__"
+        read_only_fields=["id","user","created_date"]

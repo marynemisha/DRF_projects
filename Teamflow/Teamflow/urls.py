@@ -1,5 +1,5 @@
 """
-URL configuration for Teamflow project.
+URL configuration for TeamFlow project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.1/topics/http/urls/
@@ -17,12 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Teamapp import views
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',views.Register.as_view()),
     path('users/',views.Userview.as_view()),
+    path('jwt_login/',TokenObtainPairView.as_view()),
     path('project/',views.ProjectCreateView.as_view()),
     path('project/<pk>/',views.ProjectCRUDView.as_view()),
+    path('refresh/',TokenRefreshView.as_view()),
     path('project/<pk>/members/',views.ProjectMemberView.as_view()),
-    path('project/<pk>/members/<id>/',views.ProjectMemberDeleteView.as_view()),   
+    path('project/<pk>/members/<id>/',views.ProjectMemberDeleteView.as_view()),
+    path('deadline/',views.DeadlineView.as_view()),
+    path('jwt_logout/',views.JWT_Logout.as_view()),
 ]

@@ -1,11 +1,15 @@
 from django.shortcuts import render,get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.contrib.auth.models import User
 from Teamapp.models import *
 from Teamapp.serializers import *
 from Teamapp import serializers
 from rest_framework import authentication,permissions
 from rest_framework.exceptions import PermissionDenied
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from datetime import date
 # Create your views here.
 class Register(APIView):
     def post(self,request):
@@ -25,7 +29,7 @@ class Userview(APIView):
         serializer_instance=RegisterSerializer(user,many=True)
         return Response(data=serializer_instance.data)
 class ProjectCreateView(APIView):
-    authentication_classes=[authentication.BasicAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes=[permissions.IsAuthenticated]
 
     def get(self,request):
@@ -43,7 +47,7 @@ class ProjectCreateView(APIView):
             })
         return Response(data=serializer_instance.errors)
 class ProjectCRUDView(APIView):
-    authentication_classes=[authentication.BasicAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes=[permissions.IsAuthenticated]
     def get(self,request,pk):
         project=get_object_or_404(ProjectDb,id=pk)
@@ -75,7 +79,7 @@ class ProjectCRUDView(APIView):
             })
 
 class ProjectMemberView(APIView):
-    authentication_classes=[authentication.BasicAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes=[permissions.IsAuthenticated]
     def get(self,request,pk):
         project=get_object_or_404(ProjectDb,id=pk)
@@ -101,7 +105,7 @@ class ProjectMemberView(APIView):
             return Response(data=serializer_instance.errors)
 
 class ProjectMemberDeleteView(APIView):
-    authentication_classes=[authentication.BasicAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes=[permissions.IsAuthenticated]
     def delete(self,request,pk,id):
         project=get_object_or_404(ProjectDb,id=pk)
@@ -112,3 +116,40 @@ class ProjectMemberDeleteView(APIView):
         return Response({
             "Message":"Deleted successfully..!"
         })
+
+    
+class DeadlineView(APIView):
+    authentication_classes=[JWTAuthentication]
+    permission_classes=[permissions.IsAuthenticated]
+    def get(self,request):
+        projects=ProjectDb.objects.filter(created_by=request.user)
+        reminders=[]
+        for project in projects:
+            bal=(project.deadline - date.today()).days
+            if bal>0:
+                message=f"Your project deadline is in {bal} days!"
+            elif bal==0:
+                message="Your project deadline is today!"
+            else:
+                 message = f"Your project is overdue by {abs(bal)} days!"
+
+            reminders.append({
+                "project": project.title,
+                "deadline": project.deadline,
+                "message": message
+            })
+        return Response(data=reminders)
+
+class JWT_Logout(APIView):
+    def post(self,request):
+        try:
+            refresh_token=request.data.get("refresh")
+            token=RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({
+                "Message":"Logout success..!"
+            })
+        except Exception:
+            return Response({
+                "Message":"Invalid token...!"
+            })

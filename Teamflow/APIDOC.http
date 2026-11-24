@@ -1,0 +1,195 @@
+#REGISTRATION
+###
+POST http://127.0.0.1:8000/register/
+Content-Type: application/json
+
+# {
+#     "username":"Anu",
+#     "email":"anu@gmail.com",
+#     "password":"anu123"
+# }
+
+# {
+#     "username":"Dev",
+#     "email":"dev@gmail.com",
+#     "password":"dev123"
+# }
+
+# {
+#     "username":"Sam",
+#     "email":"sam@gmail.com",
+#     "password":"sam123"
+# }
+
+# {
+#     "username":"Anjana",
+#     "email":"anjana@gmail.com",
+#     "password":"anjana123"
+# }
+
+# {
+#     "username":"Nemisha",
+#     "email":"nemisha@gmail.com",
+#     "password":"nemisha123"
+# }
+
+{
+    "username":"Alan",
+    "email":"alan@gmail.com",
+    "password":"alan123"
+}
+
+
+
+
+#VIEW ALL USERS
+###
+GET http://127.0.0.1:8000/users/
+Accept: application/json
+
+
+#JWT LOGIN
+###
+POST http://127.0.0.1:8000/jwt_login/
+Content-Type: application/json
+
+# {
+#     "username":"Anjana",
+#     "password":"anjana123"
+# }
+
+{
+    "username":"Anu",
+    "password":"anu123"
+}
+
+#PROJECT DETAILS 
+###
+GET http://127.0.0.1:8000/project/
+Accept: application/json
+#Anjana data
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzYxNzA2LCJpYXQiOjE3OTUzNjE0MDYsImp0aSI6IjIxMTNlOGFhMDA3YzQ0NmJiM2M3OTdjMjFiMTAxYzkzIiwidXNlcl9pZCI6IjQifQ.O73o7WIHOYUEqAn5JsSZxMWIF7sBOegSttf1kaACgqw
+# Anu data
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzYyMDEyLCJpYXQiOjE3OTUzNjE3MTIsImp0aSI6ImFjZDRiOWM5MjlmODRiYWZhMmM5Njc4NzQ4Y2UwOWY0IiwidXNlcl9pZCI6IjEifQ.fB-yvPoJ7hi5JXZCIq1a8ha5vOCjX6vZjhrF0u66T8Y
+
+
+#Anjana's project details
+# ###
+# POST http://127.0.0.1:8000/project/
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzYxNzA2LCJpYXQiOjE3OTUzNjE0MDYsImp0aSI6IjIxMTNlOGFhMDA3YzQ0NmJiM2M3OTdjMjFiMTAxYzkzIiwidXNlcl9pZCI6IjQifQ.O73o7WIHOYUEqAn5JsSZxMWIF7sBOegSttf1kaACgqw
+
+# {
+#   "title": "Hospital Management",
+#   "description": "Hospital management system development",
+#   "deadline": "2026-12-30"
+# }
+
+# {
+#     "title": "E-Commerce Website",
+#     "description": "Online shopping platform development",
+#     "deadline": "2027-01-15"
+# }
+
+# {
+#     "title": "Online Banking System",
+#     "description": "Online banking application development",
+#     "deadline": "2027-03-15"
+# }
+
+
+#Anu's project details
+###
+POST http://127.0.0.1:8000/project/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzYyMDEyLCJpYXQiOjE3OTUzNjE3MTIsImp0aSI6ImFjZDRiOWM5MjlmODRiYWZhMmM5Njc4NzQ4Y2UwOWY0IiwidXNlcl9pZCI6IjEifQ.fB-yvPoJ7hi5JXZCIq1a8ha5vOCjX6vZjhrF0u66T8Y
+
+# {
+#     "title": "E-Commerce Website",
+#     "description": "Online shopping platform development",
+#     "deadline": "2027-01-15"
+# }
+
+# {
+#     "title": "Food Delivery App",
+#     "description": "Online food ordering and delivery system",
+#     "deadline": "2027-02-10"
+# }
+
+{
+    "title": "Student Management System",
+    "description": "Manage student records and academic details",
+    "deadline": "2027-02-28"
+}
+
+###
+POST http://127.0.0.1:8000/refresh/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzYyNzE2LCJpYXQiOjE3OTUzNjI0MTYsImp0aSI6IjIwZTQ5YmQ2NWM1NjQ1NmNhZjIwODNkZmU0YThiZTA0IiwidXNlcl9pZCI6IjEifQ.S_t0YahpvK70GuEc698nOEE3RB5PdTkfqWA52hFV1M4
+
+{
+  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5NTQ0ODgxNiwiaWF0IjoxNzk1MzYyNDE2LCJqdGkiOiJlNjc4ODE2Y2Q5YjQ0ZGZmYmZmMmQzYjI0MTZkMDUwNCIsInVzZXJfaWQiOiIxIn0.p6g1UuuwAEsRDRT25UHY4phgCdJhOfhikmwWrU5s3pk"
+}
+
+###
+GET http://127.0.0.1:8000/project/6/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzYyNzkyLCJpYXQiOjE3OTUzNjI0OTMsImp0aSI6IjgyYjZiZTg4NjA5ZTRhNDM4ZjRmZjM0YmNlNzY4MjRmIiwidXNlcl9pZCI6IjEifQ.wyRWajX1C0sZW_6O9YV2dsAVnF1JX7k6rLhIjYljXaY
+
+###
+PUT http://127.0.0.1:8000/project/6/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzYyNzkyLCJpYXQiOjE3OTUzNjI0OTMsImp0aSI6IjgyYjZiZTg4NjA5ZTRhNDM4ZjRmZjM0YmNlNzY4MjRmIiwidXNlcl9pZCI6IjEifQ.wyRWajX1C0sZW_6O9YV2dsAVnF1JX7k6rLhIjYljXaY
+
+{
+    "title": "Student Management",
+    "description": "Manage student records and academic details",
+    "deadline": "2027-02-15"
+}   
+
+###
+DELETE http://127.0.0.1:8000/project/6/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzYyNzkyLCJpYXQiOjE3OTUzNjI0OTMsImp0aSI6IjgyYjZiZTg4NjA5ZTRhNDM4ZjRmZjM0YmNlNzY4MjRmIiwidXNlcl9pZCI6IjEifQ.wyRWajX1C0sZW_6O9YV2dsAVnF1JX7k6rLhIjYljXaY
+
+
+#PROJECT MEMBER DETAILS
+###
+GET http://127.0.0.1:8000/project/5/members/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzY0OTk5LCJpYXQiOjE3OTUzNjQ2OTksImp0aSI6IjgyMmM4ODM5MmU2ZTQ1YmQ4ZWY4ZWY5Y2FkNTMwYjUxIiwidXNlcl9pZCI6IjEifQ.TwnSpzumgvkhqnD1N8WK0c6eJ1x69Yk5j-yhRyqrAHg
+
+###
+POST http://127.0.0.1:8000/project/5/members/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzY0OTk5LCJpYXQiOjE3OTUzNjQ2OTksImp0aSI6IjgyMmM4ODM5MmU2ZTQ1YmQ4ZWY4ZWY5Y2FkNTMwYjUxIiwidXNlcl9pZCI6IjEifQ.TwnSpzumgvkhqnD1N8WK0c6eJ1x69Yk5j-yhRyqrAHg
+
+# {
+#     "username":"Sam"
+# }
+
+# {
+#     "username":"Alan"
+# }
+
+{
+    "username":"Anjana"
+}
+
+###
+DELETE http://127.0.0.1:8000/project/5/members/1/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzY0OTk5LCJpYXQiOjE3OTUzNjQ2OTksImp0aSI6IjgyMmM4ODM5MmU2ZTQ1YmQ4ZWY4ZWY5Y2FkNTMwYjUxIiwidXNlcl9pZCI6IjEifQ.TwnSpzumgvkhqnD1N8WK0c6eJ1x69Yk5j-yhRyqrAHg
+
+#DEADLINE REMINDER
+###
+GET http://127.0.0.1:8000/deadline/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzY3MTQzLCJpYXQiOjE3OTUzNjY4NDMsImp0aSI6IjNhNzVlZjFmMDg1MDQzMzZiNDNlMDc3NjNiMzc1NDAyIiwidXNlcl9pZCI6IjEifQ.JcarOsmG7HEsbkqIOhJC3vndNmyIQ3ELkIJ44ecXXsk
+
+#LOGOUT
+###
+POST http://127.0.0.1:8000/jwt_logout/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MzcwNjE5LCJpYXQiOjE3OTUzNzAzMTksImp0aSI6IjY1OWY5Yjg4MTQ0MDQxZDRhZmRjNGU5MjRmZGUwZjlmIiwidXNlcl9pZCI6IjEifQ.GlC1lyazbjLB2lucQnzITIriwd3dBjQBArh5ScEUO9A
+
+{
+ "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5NTQ1NjcxOSwiaWF0IjoxNzk1MzcwMzE5LCJqdGkiOiJlOGM0NjU4MWRlYTM0ODM0ODAyYzIwNmY5ZmFkZjEzYSIsInVzZXJfaWQiOiIxIn0.6KBGZXHN2809JsR14Lsx0jN7X6A61NaViRtjatDiMm4"
+}
